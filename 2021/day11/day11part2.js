@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { exit } = require('process');
 
 function recFlash(grid, row, column) {
     for (let i = row-1; i <= row+1; i++) {
