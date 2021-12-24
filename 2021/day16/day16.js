@@ -5,19 +5,20 @@ function recFind(bits, sum) {
     const typId = parseInt(bits.slice(3,6), 2);
     sum[0] += version;
     if (typId !== 4) {
+        const lengthTypeId = bits[6];
         let sliceEnd = 7;
-        if (bits[6] === "1")
+        if (lengthTypeId === "1")
             sliceEnd += 11;
         else
             sliceEnd += 15;
         const length = parseInt(bits.slice(7, sliceEnd), 2);
-        let start = [];
+        console.log(length);
+        /*let start = [];
         
         for (let i = sliceEnd; i+length <= bits.length; i+=length) {
             start.push(bits.slice(i,i+length));
             //recFind(bits.slice(i,i+length), sum);
-        }
-        console.log(start);
+        }*/
     }
 }
 
