@@ -1,5 +1,33 @@
 const fs = require('fs');
 
+function interpretLiteral(bits) {
+    let package = {
+        version: parseInt(bits.slice(0,3), 2),
+        typeID: parseInt(bits.slice(3,6), 2),
+        value: null,
+        neededBits: null
+    }
+    let s = "";
+    for (let i = 6;; i+=5) {
+        const num = bits.slice(i,i+5);
+        s += num.slice(1);
+        if (num[0] === "0") {
+            package.neededBits = i+6;
+            break;
+        }
+    }
+    package.value = parseInt(s, 2);
+    return package;
+}
+
+function findNextByLength() {
+
+}
+
+function findNextByAmount() {
+
+}
+
 function recFind(bits, sum) {
     const version = parseInt(bits.slice(0,3), 2);
     const typId = parseInt(bits.slice(3,6), 2);
@@ -11,18 +39,20 @@ function recFind(bits, sum) {
             sliceEnd += 11;
         else
             sliceEnd += 15;
-        const length = parseInt(bits.slice(7, sliceEnd), 2);
-        console.log(length);
-        /*let start = [];
-        
-        for (let i = sliceEnd; i+length <= bits.length; i+=length) {
-            start.push(bits.slice(i,i+length));
-            //recFind(bits.slice(i,i+length), sum);
-        }*/
+        const lengthOrAmount = parseInt(bits.slice(7, sliceEnd), 2);
+        console.log(lengthOrAmount);
+        if (lengthTypeId === "0") {
+            recFind(bits.slice(sliceEnd, sliceEnd+lengthOrAmount), sum);
+        } else {
+
+        }
+
+
     }
 }
 
 function solve(input) {
+    input = "38006F45291200";
     const convert = {
         "0": "0000",
         "1": "0001",
@@ -45,7 +75,8 @@ function solve(input) {
     const sum = [0];
     recFind(bits, sum)
 
-    return sum;
+    //return sum;
+    //console.log(interpretLiteral("D2FE28".split("").map(e => convert[e]).join("")));
 }
 
 console.log(
