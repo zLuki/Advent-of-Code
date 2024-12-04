@@ -14,7 +14,6 @@ for (let i = 0; i < input.length; i++) {
         for (let j = i-1; j >= 0; j--) {
             amount++;
             if (input[j][x] >= input[i][x]) {
-                visible = false;
                 break;
             }
         }
@@ -25,7 +24,6 @@ for (let i = 0; i < input.length; i++) {
         for (let j = i+1; j < input.length; j++) {
             amount++;
             if (input[j][x] >= input[i][x]) {
-                visible = false;
                 break;
             }
         }
@@ -36,7 +34,6 @@ for (let i = 0; i < input.length; i++) {
         for (let j = x-1; j >= 0; j--) {
             amount++;
             if (input[i][j] >= input[i][x]) {
-                visible = false;
                 break;
             }
         }
@@ -47,7 +44,6 @@ for (let i = 0; i < input.length; i++) {
         for (let j = x+1; j < input[i].length; j++) {
             amount++;
             if (input[i][j] >= input[i][x]) {
-                visible = false;
                 break;
             }
         }
@@ -55,7 +51,10 @@ for (let i = 0; i < input.length; i++) {
 
         if (allAmount > bestAllamount) {
             bestAllamount = allAmount;
+            console.log(bestAllamount);
         }
+
+        
 
     }
 }
